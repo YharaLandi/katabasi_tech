@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KATABASI — Architettura Tecnica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-left">
+      <a href="#" class="nav-logo">KATABASI</a>
+      <span class="nav-sub">Architettura tecnica</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#struttura">Struttura</a></li>
+      <li><a href="#stato">Stato</a></li>
+      <li><a href="#moduli">Moduli</a></li>
+      <li><a href="#espansioni">Espansioni</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Schema tecnico &nbsp;&middot;&nbsp; Pre-sviluppo</p>
+    <h1 class="hero-title">KATABASI</h1>
+    <p class="hero-sub">Architettura &middot; Struttura &middot; Roadmap</p>
+    <p class="hero-desc">
+      KATABASI nasce come gioco JS vanilla, progettato fin dall'inizio per essere
+      espandibile verso React, Redux, TypeScript e un backend Java/Spring Boot.
+      Ogni decisione architetturale della V1 deve rendere quel refactor naturale, non traumatico.
+    </p>
+    <div class="hero-line"></div>
+  </section>
+
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-label reveal">Roadmap tecnologica</div>
+      <h2 class="section-title reveal">Dal vanilla all'AI</h2>
+      <ol class="roadmap reveal">
+        <li class="roadmap-item v1">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V1 &mdash; Ora</div>
+            <div class="roadmap-stack">HTML + CSS + JS vanilla</div>
+            <p class="roadmap-milestone">Gioco completo e giocabile</p>
+          </div>
+        </li>
+        <li class="roadmap-item v2">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V2 &mdash; Settimana 7</div>
+            <div class="roadmap-stack">+ localStorage</div>
+            <p class="roadmap-milestone">Salvataggio e caricamento partita</p>
+          </div>
+        </li>
+        <li class="roadmap-item v3">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V3 &mdash; Settimana 7</div>
+            <div class="roadmap-stack">+ Fetch / API esterna</div>
+            <p class="roadmap-milestone">Lore generativa, nomi NPC casuali</p>
+          </div>
+        </li>
+        <li class="roadmap-item v4">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V4 &mdash; Settimane 9&ndash;11</div>
+            <div class="roadmap-stack">React + Redux + TypeScript</div>
+            <p class="roadmap-milestone">Refactor componenti, stato globale tipizzato</p>
+          </div>
+        </li>
+        <li class="roadmap-item v5">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V5 &mdash; Settimane 13&ndash;16</div>
+            <div class="roadmap-stack">Java + Spring Boot + PostgreSQL</div>
+            <p class="roadmap-milestone">Backend per salvataggi, classifiche, autenticazione</p>
+          </div>
+        </li>
+        <li class="roadmap-item v6">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-content">
+            <div class="roadmap-version">V6 &mdash; Settimane 18&ndash;19</div>
+            <div class="roadmap-stack">Claude API</div>
+            <p class="roadmap-milestone">Sable diventa un agente AI contestuale</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="struttura">
+    <div class="container">
+      <div class="section-label reveal">Struttura file V1</div>
+      <h2 class="section-title reveal">La cartella del progetto</h2>
+      <pre class="file-tree reveal"><code><span class="ft-root">katabasi/</span>
+├── <span class="ft-file">index.html</span>          <span class="ft-comment">← entry point, struttura DOM fissa</span>
+├── <span class="ft-file">style.css</span>           <span class="ft-comment">← layout globale, variabili CSS, tema</span>
+├── <span class="ft-file">script.js</span>           <span class="ft-comment">← inizializzazione, event listeners globali</span>
+├── <span class="ft-dir">assets/</span>
+│   └── <span class="ft-dir">sounds/</span>         <span class="ft-comment">← effetti sonori opzionali</span>
+└── <span class="ft-dir">js/</span>
+    ├── <span class="ft-file">game.js</span>         <span class="ft-comment">← stato globale, funzioni lettura/scrittura</span>
+    ├── <span class="ft-file">scene.js</span>        <span class="ft-comment">← caricamento e rendering scene</span>
+    ├── <span class="ft-file">inventory.js</span>    <span class="ft-comment">← gestione oggetti e combinazioni</span>
+    ├── <span class="ft-file">puzzle.js</span>       <span class="ft-comment">← logica enigmi e validazione</span>
+    ├── <span class="ft-file">dialogue.js</span>     <span class="ft-comment">← dialoghi NPC e scelte ramificate</span>
+    ├── <span class="ft-file">board.js</span>        <span class="ft-comment">← bacheca indizi, connessioni visive</span>
+    ├── <span class="ft-file">ending.js</span>       <span class="ft-comment">← calcolo e rendering dei finali</span>
+    └── <span class="ft-dir">data/</span>
+        ├── <span class="ft-file">scenes.js</span>   <span class="ft-comment">← testi, oggetti, uscite per scena</span>
+        ├── <span class="ft-file">puzzles.js</span>  <span class="ft-comment">← domande, soluzioni, hint</span>
+        ├── <span class="ft-file">characters.js</span> <span class="ft-comment">← dialoghi NPC, condizioni sblocco</span>
+        └── <span class="ft-file">items.js</span>    <span class="ft-comment">← oggetti, combinazioni valide</span></code></pre>
+    </div>
+  </section>
+
+  <section class="section" id="stato">
+    <div class="container">
+      <div class="section-label reveal">Lo stato di gioco</div>
+      <h2 class="section-title reveal">gameState &mdash; il cuore dell'applicazione</h2>
+      <p class="reveal">
+        Un unico oggetto JS che contiene tutto ci&ograve; che &egrave; accaduto durante la partita.
+        Ogni modulo legge e scrive tramite funzioni dedicate in <strong>game.js</strong> &mdash;
+        nessun modulo lo manipola direttamente.
+      </p>
+      <table class="state-table reveal">
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Tipo</th>
+            <th>Descrizione</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>player.identity</td><td>string | null</td><td>'detective', 'journalist', 'occultist'</td></tr>
+          <tr><td>player.name</td><td>string</td><td>Nome scelto dal giocatore</td></tr>
+          <tr><td>clues</td><td>array</td><td>ID degli indizi raccolti</td></tr>
+          <tr><td>inventory</td><td>array</td><td>ID degli oggetti in possesso</td></tr>
+          <tr><td>connections</td><td>array di coppie</td><td>Connessioni fatte sulla bacheca</td></tr>
+          <tr><td>choices.coveredSuspect</td><td>boolean</td><td>Scena 02 &mdash; scelta morale</td></tr>
+          <tr><td>choices.accusedId</td><td>string | null</td><td>ID del sospettato accusato</td></tr>
+          <tr><td>currentScene</td><td>string</td><td>ID della scena corrente</td></tr>
+          <tr><td>unlockedScenes</td><td>array</td><td>Scene accessibili</td></tr>
+          <tr><td>puzzlesSolved</td><td>array</td><td>ID degli enigmi risolti</td></tr>
+        </tbody>
+      </table>
+      <p class="reveal note">
+        Lo stato non viene mai modificato direttamente dall'esterno. Ogni modulo chiama funzioni
+        tipo <code>addClue(id)</code>, <code>addToInventory(id)</code>, <code>setChoice(key, value)</code>.
+        Questo pattern &egrave; identico a come funziona Redux nella V4 &mdash; il refactor sar&agrave; quasi automatico.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="moduli">
+    <div class="container">
+      <div class="section-label reveal">Moduli &mdash; responsabilit&agrave;</div>
+      <h2 class="section-title reveal">Ogni file fa una cosa sola</h2>
+      <dl class="module-list reveal">
+        <div class="module-card">
+          <dt class="module-name">game.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Contiene e gestisce <code>gameState</code></li>
+              <li>Espone funzioni pure di lettura e scrittura</li>
+              <li>Calcola condizioni di sblocco (<code>canAccessScene</code>, <code>hasClue</code>, <code>clueCount</code>)</li>
+              <li>Non tocca mai il DOM</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">scene.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Riceve l'ID di una scena, legge i dati da <code>data/scenes.js</code></li>
+              <li>Renderizza testo, oggetti interattivi, uscite disponibili</li>
+              <li>Gestisce la navigazione tra scene</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">inventory.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Mostra l'inventario corrente</li>
+              <li>Gestisce click o drag per combinare oggetti</li>
+              <li>Verifica se una combinazione &egrave; valida tramite <code>data/items.js</code></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">puzzle.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Tipi gestiti: <code>riddle</code>, <code>cipher</code>, <code>pattern</code>, <code>sequence</code></li>
+              <li>Riceve input del giocatore, valida contro la soluzione in <code>data/puzzles.js</code></li>
+              <li>In caso di successo chiama <code>addClue()</code> o sblocca un oggetto</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">dialogue.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Opzioni disponibili dipendono da <code>player.identity</code> e <code>clues</code></li>
+              <li>Struttura ad albero: ogni nodo ha ID, testo, condizioni, conseguenze</li>
+              <li>Ogni scelta pu&ograve; aggiornare lo stato tramite <code>setChoice()</code></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">board.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Renderizza la bacheca degli indizi nella scena 04</li>
+              <li>Permette di connettere visivamente gli elementi raccolti</li>
+              <li>Valida le connessioni per sbloccare il finale</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="module-card">
+          <dt class="module-name">ending.js</dt>
+          <dd>
+            <ul class="module-bullets">
+              <li>Chiamato dopo l'accusa nella scena 05</li>
+              <li>Controlla <code>clueCount</code>, <code>choices.coveredSuspect</code>, <code>player.identity</code>, <code>choices.accusedId</code></li>
+              <li>Renderizza il testo del finale appropriato</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="ui">
+    <div class="container">
+      <div class="section-label reveal">Interfaccia utente</div>
+      <h2 class="section-title reveal">Aree funzionali</h2>
+      <dl class="ui-grid reveal">
+        <div class="ui-cell">
+          <dt class="ui-area">Header</dt>
+          <dd class="ui-desc">Titolo KATABASI, identit&agrave; giocatore, pulsante inventario</dd>
+        </div>
+        <div class="ui-cell">
+          <dt class="ui-area">Area scena</dt>
+          <dd class="ui-desc">Testo descrittivo della scena corrente, elementi interattivi</dd>
+        </div>
+        <div class="ui-cell">
+          <dt class="ui-area">Area azioni</dt>
+          <dd class="ui-desc">Pulsanti contestuali: esamina, raccogli, parla, usa</dd>
+        </div>
+        <div class="ui-cell">
+          <dt class="ui-area">Pannello inventario</dt>
+          <dd class="ui-desc">Slide-in laterale con oggetti in possesso</dd>
+        </div>
+        <div class="ui-cell">
+          <dt class="ui-area">Bacheca indizi</dt>
+          <dd class="ui-desc">Overlay fullscreen attivo solo nella scena 04</dd>
+        </div>
+        <div class="ui-cell">
+          <dt class="ui-area">Overlay enigma</dt>
+          <dd class="ui-desc">Modale che compare quando si interagisce con un enigma</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="principi">
+    <div class="container">
+      <div class="section-label reveal">Principi di design del codice</div>
+      <h2 class="section-title reveal">Regole che non si rompono</h2>
+      <dl class="principle-list reveal">
+        <div class="principle-item">
+          <dt class="principle-name">Separazione dati / logica / UI</dt>
+          <dd class="principle-desc">I dati stanno in <code>data/</code>, la logica in <code>game.js</code> e nei moduli, il DOM solo nei moduli di render. Nessuna logica di business dentro il DOM.</dd>
+        </div>
+        <div class="principle-item">
+          <dt class="principle-name">Stato unico e centralizzato</dt>
+          <dd class="principle-desc">Un solo <code>gameState</code>. Nessuna variabile globale sparsa. Preparazione diretta al pattern Redux nella V4.</dd>
+        </div>
+        <div class="principle-item">
+          <dt class="principle-name">Funzioni pure dove possibile</dt>
+          <dd class="principle-desc">Validazione enigmi, calcolo finale, controllo condizioni: prendono dati in input e restituiscono risultati. Nessun side effect.</dd>
+        </div>
+        <div class="principle-item">
+          <dt class="principle-name">ID stringa per tutto</dt>
+          <dd class="principle-desc">Scene, oggetti, enigmi, indizi identificati da stringhe tipo <code>'scene_tower'</code>, <code>'item_mirror_shard'</code>. Facile da serializzare in JSON per localStorage e poi per il DB.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="espansioni">
+    <div class="container">
+      <div class="section-label reveal">Espansioni future</div>
+      <h2 class="section-title reveal">Dove porta la discesa</h2>
+      <div class="exp-grid reveal">
+        <div class="exp-card exp-v2">
+          <div class="exp-version">V2</div>
+          <div class="exp-title">localStorage</div>
+          <ul class="exp-bullets">
+            <li><code>JSON.stringify</code> su ogni update</li>
+            <li>Deserializzazione al caricamento</li>
+            <li>Nessuna modifica strutturale</li>
+          </ul>
+        </div>
+        <div class="exp-card exp-v3">
+          <div class="exp-version">V3</div>
+          <div class="exp-title">API esterna</div>
+          <ul class="exp-bullets">
+            <li>Fetch asincrona</li>
+            <li>Nomi NPC casuali</li>
+            <li>Variazioni di lore</li>
+            <li><code>async</code> / <code>await</code></li>
+          </ul>
+        </div>
+        <div class="exp-card exp-v4">
+          <div class="exp-version">V4</div>
+          <div class="exp-title">React + Redux + TS</div>
+          <ul class="exp-bullets">
+            <li><code>gameState</code> diventa store</li>
+            <li>Moduli diventano componenti</li>
+            <li>Actions e reducers</li>
+            <li>Refactor quasi automatico</li>
+          </ul>
+        </div>
+        <div class="exp-card exp-v5">
+          <div class="exp-version">V5</div>
+          <div class="exp-title">Java + Spring Boot</div>
+          <ul class="exp-bullets">
+            <li>Endpoint REST save/load</li>
+            <li>Tabella saves + PostgreSQL</li>
+            <li>Autenticazione JWT</li>
+            <li>Classifica globale</li>
+          </ul>
+        </div>
+        <div class="exp-card exp-v6 exp-full">
+          <div class="exp-version">V6</div>
+          <div class="exp-title">Claude API &mdash; Sable diventa vivo</div>
+          <ul class="exp-bullets exp-bullets-wide">
+            <li>Sable risponde in modo contestuale agli indizi raccolti</li>
+            <li>Dialoghi unici generati per ogni partita</li>
+            <li>Sistema RAG per coerenza narrativa</li>
+            <li>Agente AI specializzato nel personaggio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="ornament">&middot; &middot; &middot;</p>
+      <p class="footer-title">KATABASI</p>
+      <p class="footer-meta">Schema tecnico &nbsp;&middot;&nbsp; Versione 1.0 &nbsp;&middot;&nbsp; Pre-sviluppo</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
